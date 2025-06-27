@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Secure_QR.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Secure QR Generator">
+
+    <ScrollView>
+        <Grid Padding="20" RowSpacing="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <Label Grid.Row="0" 
+                   Text="Secure QR Code Generator" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="#2E4CEF" />
+
+            <!-- Input Section -->
+            <Frame Grid.Row="1" BackgroundColor="LightGray" Padding="15" CornerRadius="10">
+                <StackLayout Spacing="10">
+                    <Label Text="Data Input:" FontSize="16" FontAttributes="Bold" />
+                    
+                    <Entry x:Name="DataEntry1" 
+                           Placeholder="Enter data for QR Code 1" 
+                           Text="{Binding DataInput1}" />
+                    
+                    <Entry x:Name="DataEntry2" 
+                           Placeholder="Enter data for QR Code 2" 
+                           Text="{Binding DataInput2}" />
+                    
+                    <Entry x:Name="DataEntry3" 
+                           Placeholder="Enter data for QR Code 3" 
+                           Text="{Binding DataInput3}" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Encryption Options -->
+            <Frame Grid.Row="2" BackgroundColor="LightBlue" Padding="15" CornerRadius="10">
+                <StackLayout Spacing="10">
+                    <Label Text="Encryption Settings:" FontSize="16" FontAttributes="Bold" />
+                    
+                    <StackLayout Orientation="Horizontal" Spacing="20">
+                        <RadioButton x:Name="AESRadio" 
+                                     Content="AES Encryption" 
+                                     IsChecked="{Binding UseAESEncryption}" 
+                                     GroupName="EncryptionType" />
+                        
+                        <RadioButton x:Name="RSARadio" 
+                                     Content="RSA Encryption" 
+                                     IsChecked="{Binding UseRSAEncryption}" 
+                                     GroupName="EncryptionType" />
+                    </StackLayout>
+
+                    <CheckBox x:Name="EncryptionEnabledCheckbox" 
+                              IsChecked="{Binding IsEncryptionEnabled}" />
+                    <Label Text="Enable Encryption" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Generation Controls -->
+    <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="Start" Margin="0,10,0,0">
+        <Button Text="Generate 3 QR Codes"
+            Command="{Binding GenerateQRCodesCommand}"
+            BackgroundColor="#4CAF50"
+            FlexLayout.Grow="2" />
+        <Button Text="Clear All"
+            Command="{Binding ClearAllCommand}"
+            BackgroundColor="#FF5722"
+            FlexLayout.Grow="1" />
+    </FlexLayout>
+            <!-- Performance Stats -->
+            <Frame Grid.Row="4" BackgroundColor="LightYellow" Padding="10" CornerRadius="8">
+                <StackLayout Orientation="Horizontal" Spacing="15">
+                    <Label Text="{Binding GenerationTime, StringFormat='Time: {0:F2}s'}" 
+                           FontSize="12" />
+                    <Label Text="{Binding StatusMessage}" 
+                           FontSize="12" 
+                           TextColor="Green" />
+                </StackLayout>
+            </Frame>
+
+            <!-- QR Code Display Area -->
+            <Label Grid.Row="5" 
+                   Text="Generated QR Codes:" 
+                   FontSize="18" 
+                   FontAttributes="Bold" 
+                   Margin="0,10,0,5" />
+
+            <CollectionView Grid.Row="6" 
+                            ItemsSource="{Binding QRCodeImages}" 
+                            HeightRequest="400">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="1" />
+                </CollectionView.ItemsLayout>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" RowSpacing="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="200" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" 
+                                   Text="{Binding Title}" 
+                                   FontSize="14" 
+                                   FontAttributes="Bold" 
+                                   HorizontalOptions="Center" />
+
+                            <Image Grid.Row="1" 
+                                   Source="{Binding ImageSource}" 
+                                   Aspect="AspectFit" 
+                                   BackgroundColor="White" />
+
+                            <Label Grid.Row="2" 
+                                   Text="{Binding OriginalData, StringFormat='Original: {0}'}" 
+                                   FontSize="10" 
+                                   LineBreakMode="TailTruncation" />
+
+                            <StackLayout Grid.Row="3" Orientation="Horizontal" Spacing="5">
+                                <Button Text="Share" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ShareQRCommand}" 
+                                        CommandParameter="{Binding}" 
+                                        FontSize="12" 
+                                        Padding="5" 
+                                        BackgroundColor="#2196F3" />
+                                
+                                <Button Text="Decrypt" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DecryptQRCommand}" 
+                                        CommandParameter="{Binding}" 
+                                        FontSize="12" 
+                                        Padding="5" 
+                                        BackgroundColor="#FF9800" />
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Debug/Info Section -->
+            <Frame Grid.Row="7" 
+                   BackgroundColor="LightGray" 
+                   Padding="10" 
+                   CornerRadius="5" 
+                   IsVisible="{Binding ShowDebugInfo}">
+                <StackLayout Spacing="5">
+                    <Label Text="Debug Information:" FontSize="12" FontAttributes="Bold" />
+                    <Label Text="{Binding DebugInfo}" FontSize="10" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>
