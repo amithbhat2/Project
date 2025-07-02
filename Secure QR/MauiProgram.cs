@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using ZXing.Net.Maui;
-using ZXing.Net.Maui.Controls;
 
 namespace Secure_QR;
 
@@ -12,7 +10,6 @@ public static class MauiProgram
 
         builder
             .UseMauiApp<App>()
-            .UseBarcodeReader() // Enables ZXing barcode generation
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

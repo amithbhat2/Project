@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Runtime.InteropServices;
 using ZXing;
 using ZXing.Common;
+using QRCoder;
 
 namespace Secure_QR;
 
@@ -13,14 +14,15 @@ public class QRCodeData
 {
     public string Title { get; set; } = string.Empty;
     public string OriginalData { get; set; } = string.Empty;
+    public string EncryptedData { get; set; } = string.Empty;
+    public bool IsEncrypted { get; set; } = false;
+    public string EncryptionType { get; set; } = string.Empty;
     public ImageSource ImageSource { get; set; } = ImageSource.FromFile("placeholder.png");
 }
 
 public class MainViewModel : INotifyPropertyChanged
 {
-    public string DataInput1 { get; set; } = string.Empty;
-    public string DataInput2 { get; set; } = string.Empty;
-    public string DataInput3 { get; set; } = string.Empty;
+    public string DataInput { get; set; } = string.Empty;
 
     public bool UseAESEncryption { get; set; } = true;
     public bool UseRSAEncryption { get; set; } = false;
@@ -30,10 +32,12 @@ public class MainViewModel : INotifyPropertyChanged
 
     public ICommand GenerateQRCodesCommand { get; }
     public ICommand ClearAllCommand { get; }
+    public ICommand ShareQRCommand { get; }
+    public ICommand DecryptQRCommand { get; }
 
     public string StatusMessage { get; set; } = string.Empty;
     public double GenerationTime { get; set; }
-    public bool ShowDebugInfo { get; set; } = false;
+    public bool ShowDebugInfo { get; set; } = true; // Enable debug info to show encryption details
     public string DebugInfo { get; set; } = string.Empty;
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -42,73 +46,193 @@ public class MainViewModel : INotifyPropertyChanged
     {
         GenerateQRCodesCommand = new Command(GenerateQRCodes);
         ClearAllCommand = new Command(ClearAll);
+        ShareQRCommand = new Command<QRCodeData>(ShareQR);
+        DecryptQRCommand = new Command<QRCodeData>(DecryptQR);
+        
+        // Initialize debug info with encryption details
+        UpdateDebugInfo();
     }
 
     void GenerateQRCodes()
     {
         QRCodeImages.Clear();
-        var inputs = new[] { DataInput1, DataInput2, DataInput3 };
+        
+        if (string.IsNullOrWhiteSpace(DataInput))
+        {
+            StatusMessage = "Please enter some data to generate QR code.";
+            OnPropertyChanged(nameof(StatusMessage));
+            return;
+        }
+
         var stopwatch = Stopwatch.StartNew();
 
-        for (int i = 0; i < inputs.Length; i++)
+        try
         {
-            if (string.IsNullOrWhiteSpace(inputs[i])) continue;
+            string originalData = DataInput;
+            string contentForQR = originalData;
+            bool isEncrypted = false;
+            string encryptionType = "None";
 
-            string content = IsEncryptionEnabled ? Encrypt(inputs[i]) : inputs[i];
-
-            var writer = new BarcodeWriterPixelData
+            if (IsEncryptionEnabled)
             {
-                Format = ZXing.BarcodeFormat.QR_CODE,
-                Options = new EncodingOptions
+                contentForQR = Encrypt(originalData);
+                isEncrypted = true;
+                encryptionType = UseAESEncryption ? "AES" : "RSA";
+                
+                // Validate encryption worked
+                if (contentForQR.Contains("ERROR"))
                 {
-                    Width = 300,
-                    Height = 300,
-                    Margin = 1
+                    StatusMessage = "Encryption failed - check debug info for details";
+                    OnPropertyChanged(nameof(StatusMessage));
+                    return;
                 }
-            };
+            }
 
-            var pixelData = writer.Write(content);
+            // Use QRCoder instead of ZXing for better image generation
+            using var qrGenerator = new QRCoder.QRCodeGenerator();
+            var qrCodeData = qrGenerator.CreateQrCode(contentForQR, QRCoder.QRCodeGenerator.ECCLevel.Q);
+            using var qrCode = new QRCoder.PngByteQRCode(qrCodeData);
+            byte[] qrCodeBytes = qrCode.GetGraphic(20);
 
-            var stream = new MemoryStream(pixelData.Pixels);
-            stream.Position = 0;
-
-            var safeStream = new MemoryStream(pixelData.Pixels.ToArray()); // ensure memory safety
+            var stream = new MemoryStream(qrCodeBytes);
 
             QRCodeImages.Add(new QRCodeData
             {
-                Title = $"QR Code {i + 1}",
-                OriginalData = inputs[i],
-                ImageSource = ImageSource.FromStream(() => safeStream)
+                Title = $"QR Code ({encryptionType})",
+                OriginalData = originalData,
+                EncryptedData = contentForQR,
+                IsEncrypted = isEncrypted,
+                EncryptionType = encryptionType,
+                ImageSource = ImageSource.FromStream(() => new MemoryStream(qrCodeBytes))
             });
-        }
 
-        stopwatch.Stop();
-        GenerationTime = stopwatch.Elapsed.TotalSeconds;
-        StatusMessage = "QR Codes generated successfully!";
+            stopwatch.Stop();
+            GenerationTime = stopwatch.Elapsed.TotalSeconds;
+            StatusMessage = $"Successfully generated secure QR code with {encryptionType} encryption!";
+        }
+        catch (Exception ex)
+        {
+            stopwatch.Stop();
+            StatusMessage = $"Generation failed: {ex.Message}";
+            Debug.WriteLine($"QR Generation error: {ex}");
+        }
+        
+        UpdateDebugInfo();
         OnPropertyChanged(nameof(QRCodeImages));
         OnPropertyChanged(nameof(StatusMessage));
         OnPropertyChanged(nameof(GenerationTime));
+        OnPropertyChanged(nameof(DebugInfo));
     }
 
     string Encrypt(string input)
     {
-        if (UseAESEncryption)
-            return EncryptionService.EncryptAES(input);
-        if (UseRSAEncryption)
-            return EncryptionService.EncryptRSA(input);
-        return input;
+        try
+        {
+            if (UseAESEncryption)
+                return EncryptionService.EncryptAES(input);
+            if (UseRSAEncryption)
+                return EncryptionService.EncryptRSA(input);
+            return input;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Encryption error: {ex.Message}");
+            return $"[ENCRYPT_ERROR]{input}";
+        }
+    }
+
+    void ShareQR(QRCodeData? qrData)
+    {
+        if (qrData == null) return;
+        
+        try
+        {
+            // In a real app, you'd use the platform's sharing API
+            // For now, just show info
+            StatusMessage = $"Sharing: {qrData.Title} - Original: {qrData.OriginalData.Substring(0, Math.Min(20, qrData.OriginalData.Length))}...";
+            OnPropertyChanged(nameof(StatusMessage));
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = $"Share failed: {ex.Message}";
+            OnPropertyChanged(nameof(StatusMessage));
+        }
+    }
+
+    void DecryptQR(QRCodeData? qrData)
+    {
+        if (qrData == null) return;
+
+        try
+        {
+            if (!qrData.IsEncrypted)
+            {
+                StatusMessage = $"QR Code is not encrypted. Original data: {qrData.OriginalData}";
+            }
+            else
+            {
+                string decryptedData = EncryptionService.Decrypt(qrData.EncryptedData);
+                
+                if (decryptedData.Contains("ERROR"))
+                {
+                    StatusMessage = $"Decryption failed: {decryptedData}";
+                }
+                else
+                {
+                    bool matches = decryptedData == qrData.OriginalData;
+                    StatusMessage = $"Decrypted ({qrData.EncryptionType}): {decryptedData} - Match: {matches}";
+                }
+            }
+            
+            OnPropertyChanged(nameof(StatusMessage));
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = $"Decrypt error: {ex.Message}";
+            OnPropertyChanged(nameof(StatusMessage));
+        }
     }
 
     void ClearAll()
     {
-        DataInput1 = DataInput2 = DataInput3 = string.Empty;
+        DataInput = string.Empty;
         QRCodeImages.Clear();
-        StatusMessage = "Cleared.";
-        OnPropertyChanged(nameof(DataInput1));
-        OnPropertyChanged(nameof(DataInput2));
-        OnPropertyChanged(nameof(DataInput3));
+        StatusMessage = "Cleared all data and QR codes.";
+        UpdateDebugInfo();
+        
+        OnPropertyChanged(nameof(DataInput));
         OnPropertyChanged(nameof(QRCodeImages));
         OnPropertyChanged(nameof(StatusMessage));
+        OnPropertyChanged(nameof(DebugInfo));
+    }
+
+    void UpdateDebugInfo()
+    {
+        var info = new System.Text.StringBuilder();
+        info.AppendLine($"Encryption Enabled: {IsEncryptionEnabled}");
+        info.AppendLine($"Encryption Mode: {(UseAESEncryption ? "AES" : "RSA")}");
+        info.AppendLine($"Generated QR Codes: {QRCodeImages.Count}");
+        info.AppendLine($"Last Generation Time: {GenerationTime:F3}s");
+        info.AppendLine();
+        info.AppendLine("Encryption Service Info:");
+        info.Append(EncryptionService.GetEncryptionInfo());
+        
+        if (QRCodeImages.Any())
+        {
+            info.AppendLine();
+            info.AppendLine("QR Code Details:");
+            foreach (var qr in QRCodeImages)
+            {
+                info.AppendLine($"- {qr.Title}: {qr.EncryptionType}, Encrypted: {qr.IsEncrypted}");
+                if (qr.IsEncrypted)
+                {
+                    info.AppendLine($"  Encrypted Length: {qr.EncryptedData.Length} chars");
+                    info.AppendLine($"  Original Length: {qr.OriginalData.Length} chars");
+                }
+            }
+        }
+        
+        DebugInfo = info.ToString();
     }
 
     void OnPropertyChanged(string name) =>

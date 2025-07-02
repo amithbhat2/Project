@@ -13,7 +13,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -30,17 +29,11 @@
                 <StackLayout Spacing="10">
                     <Label Text="Data Input:" FontSize="16" FontAttributes="Bold" />
                     
-                    <Entry x:Name="DataEntry1" 
-                           Placeholder="Enter data for QR Code 1" 
-                           Text="{Binding DataInput1}" />
-                    
-                    <Entry x:Name="DataEntry2" 
-                           Placeholder="Enter data for QR Code 2" 
-                           Text="{Binding DataInput2}" />
-                    
-                    <Entry x:Name="DataEntry3" 
-                           Placeholder="Enter data for QR Code 3" 
-                           Text="{Binding DataInput3}" />
+                    <Entry x:Name="DataEntry" 
+                           Placeholder="Enter data for QR Code" 
+                           Text="{Binding DataInput}" 
+                           FontSize="16"
+                           HeightRequest="50" />
                 </StackLayout>
             </Frame>
 
@@ -49,7 +42,13 @@
                 <StackLayout Spacing="10">
                     <Label Text="Encryption Settings:" FontSize="16" FontAttributes="Bold" />
                     
-                    <StackLayout Orientation="Horizontal" Spacing="20">
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <CheckBox x:Name="EncryptionEnabledCheckbox" 
+                                  IsChecked="{Binding IsEncryptionEnabled}" />
+                        <Label Text="Enable Encryption" VerticalOptions="Center" />
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Horizontal" Spacing="20" IsVisible="{Binding IsEncryptionEnabled}">
                         <RadioButton x:Name="AESRadio" 
                                      Content="AES Encryption" 
                                      IsChecked="{Binding UseAESEncryption}" 
@@ -60,104 +59,127 @@
                                      IsChecked="{Binding UseRSAEncryption}" 
                                      GroupName="EncryptionType" />
                     </StackLayout>
-
-                    <CheckBox x:Name="EncryptionEnabledCheckbox" 
-                              IsChecked="{Binding IsEncryptionEnabled}" />
-                    <Label Text="Enable Encryption" />
                 </StackLayout>
             </Frame>
 
             <!-- Generation Controls -->
-    <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="Start" Margin="0,10,0,0">
-        <Button Text="Generate 3 QR Codes"
-            Command="{Binding GenerateQRCodesCommand}"
-            BackgroundColor="#4CAF50"
-            FlexLayout.Grow="2" />
-        <Button Text="Clear All"
-            Command="{Binding ClearAllCommand}"
-            BackgroundColor="#FF5722"
-            FlexLayout.Grow="1" />
-    </FlexLayout>
+            <Grid Grid.Row="3" ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0"
+                        Text="Generate QR Code"
+                        Command="{Binding GenerateQRCodesCommand}"
+                        BackgroundColor="#4CAF50"
+                        FontSize="16"
+                        HeightRequest="50" />
+                        
+                <Button Grid.Column="1"
+                        Text="Clear"
+                        Command="{Binding ClearAllCommand}"
+                        BackgroundColor="#FF5722"
+                        FontSize="16"
+                        HeightRequest="50" />
+            </Grid>
+
             <!-- Performance Stats -->
             <Frame Grid.Row="4" BackgroundColor="LightYellow" Padding="10" CornerRadius="8">
                 <StackLayout Orientation="Horizontal" Spacing="15">
-                    <Label Text="{Binding GenerationTime, StringFormat='Time: {0:F2}s'}" 
+                    <Label Text="{Binding GenerationTime, StringFormat='Time: {0:F3}s'}" 
                            FontSize="12" />
                     <Label Text="{Binding StatusMessage}" 
                            FontSize="12" 
-                           TextColor="Green" />
+                           TextColor="Green"
+                           LineBreakMode="TailTruncation"
+                           HorizontalOptions="FillAndExpand" />
                 </StackLayout>
             </Frame>
 
-            <!-- QR Code Display Area -->
-            <Label Grid.Row="5" 
-                   Text="Generated QR Codes:" 
-                   FontSize="18" 
-                   FontAttributes="Bold" 
-                   Margin="0,10,0,5" />
-
-            <CollectionView Grid.Row="6" 
+            <!-- QR Code Display -->
+            <CollectionView Grid.Row="5" 
                             ItemsSource="{Binding QRCodeImages}" 
-                            HeightRequest="400">
+                            HeightRequest="450">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="1" />
                 </CollectionView.ItemsLayout>
                 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="10" RowSpacing="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="200" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                        <Frame Padding="15" Margin="5" BackgroundColor="White" HasShadow="True">
+                            <Grid RowSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="250" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                            <Label Grid.Row="0" 
-                                   Text="{Binding Title}" 
-                                   FontSize="14" 
-                                   FontAttributes="Bold" 
-                                   HorizontalOptions="Center" />
+                                <Label Grid.Row="0" 
+                                       Text="{Binding Title}" 
+                                       FontSize="16" 
+                                       FontAttributes="Bold" 
+                                       HorizontalOptions="Center" />
 
-                            <Image Grid.Row="1" 
-                                   Source="{Binding ImageSource}" 
-                                   Aspect="AspectFit" 
-                                   BackgroundColor="White" />
+                                <Image Grid.Row="1" 
+                                       Source="{Binding ImageSource}" 
+                                       Aspect="AspectFit" 
+                                       BackgroundColor="White"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
 
-                            <Label Grid.Row="2" 
-                                   Text="{Binding OriginalData, StringFormat='Original: {0}'}" 
-                                   FontSize="10" 
-                                   LineBreakMode="TailTruncation" />
+                                <Label Grid.Row="2" 
+                                       Text="{Binding OriginalData, StringFormat='Original: {0}'}" 
+                                       FontSize="12" 
+                                       LineBreakMode="TailTruncation"
+                                       MaxLines="2" />
 
-                            <StackLayout Grid.Row="3" Orientation="Horizontal" Spacing="5">
-                                <Button Text="Share" 
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ShareQRCommand}" 
-                                        CommandParameter="{Binding}" 
-                                        FontSize="12" 
-                                        Padding="5" 
-                                        BackgroundColor="#2196F3" />
-                                
-                                <Button Text="Decrypt" 
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DecryptQRCommand}" 
-                                        CommandParameter="{Binding}" 
-                                        FontSize="12" 
-                                        Padding="5" 
-                                        BackgroundColor="#FF9800" />
-                            </StackLayout>
-                        </Grid>
+                                <Label Grid.Row="3" 
+                                       Text="{Binding EncryptedData, StringFormat='Encrypted: {0}'}" 
+                                       FontSize="10" 
+                                       LineBreakMode="TailTruncation"
+                                       MaxLines="1"
+                                       TextColor="Gray"
+                                       IsVisible="{Binding IsEncrypted}" />
+
+                                <Grid Grid.Row="4" ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Button Grid.Column="0"
+                                            Text="Share" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ShareQRCommand}" 
+                                            CommandParameter="{Binding}" 
+                                            FontSize="14" 
+                                            BackgroundColor="#2196F3" />
+                                    
+                                    <Button Grid.Column="1"
+                                            Text="Decrypt" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DecryptQRCommand}" 
+                                            CommandParameter="{Binding}" 
+                                            FontSize="14" 
+                                            BackgroundColor="#FF9800"
+                                            IsVisible="{Binding IsEncrypted}" />
+                                </Grid>
+                            </Grid>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
             <!-- Debug/Info Section -->
-            <Frame Grid.Row="7" 
+            <Frame Grid.Row="6" 
                    BackgroundColor="LightGray" 
                    Padding="10" 
                    CornerRadius="5" 
                    IsVisible="{Binding ShowDebugInfo}">
                 <StackLayout Spacing="5">
                     <Label Text="Debug Information:" FontSize="12" FontAttributes="Bold" />
-                    <Label Text="{Binding DebugInfo}" FontSize="10" />
+                    <Label Text="{Binding DebugInfo}" FontSize="10" LineBreakMode="WordWrap" />
                 </StackLayout>
             </Frame>
         </Grid>

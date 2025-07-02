@@ -306,7 +306,4 @@
 /Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
 /Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Microsoft.VisualStudio.DesignTools.TapContract.dll
 /Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Microsoft.VisualStudio.DesignTools.XamlTapContract.dll
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/Microsoft.Maui.Controls.HotReload.Forms.stamp
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/Microsoft.VisualStudio.DesignTools.MobileTapContracts.stamp
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/Microsoft.VisualStudio.DesignTools.TapContract.stamp
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/Microsoft.VisualStudio.DesignTools.XamlTapContract.stamp
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.sourcelink.json
