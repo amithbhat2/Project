@@ -69,46 +69,24 @@ public class MainViewModel : INotifyPropertyChanged
         try
         {
             string originalData = DataInput;
-            string contentForQR = originalData;
-            bool isEncrypted = false;
-            string encryptionType = "None";
 
             if (IsEncryptionEnabled)
             {
-                contentForQR = Encrypt(originalData);
-                isEncrypted = true;
-                encryptionType = UseAESEncryption ? "AES" : "RSA";
-                
-                // Validate encryption worked
-                if (contentForQR.Contains("ERROR"))
-                {
-                    StatusMessage = "Encryption failed - check debug info for details";
-                    OnPropertyChanged(nameof(StatusMessage));
-                    return;
-                }
+                // Generate 3 QR codes when encryption is enabled
+                GenerateEncryptedQRCodes(originalData);
             }
-
-            // Use QRCoder instead of ZXing for better image generation
-            using var qrGenerator = new QRCoder.QRCodeGenerator();
-            var qrCodeData = qrGenerator.CreateQrCode(contentForQR, QRCoder.QRCodeGenerator.ECCLevel.Q);
-            using var qrCode = new QRCoder.PngByteQRCode(qrCodeData);
-            byte[] qrCodeBytes = qrCode.GetGraphic(20);
-
-            var stream = new MemoryStream(qrCodeBytes);
-
-            QRCodeImages.Add(new QRCodeData
+            else
             {
-                Title = $"QR Code ({encryptionType})",
-                OriginalData = originalData,
-                EncryptedData = contentForQR,
-                IsEncrypted = isEncrypted,
-                EncryptionType = encryptionType,
-                ImageSource = ImageSource.FromStream(() => new MemoryStream(qrCodeBytes))
-            });
+                // Generate single QR code when encryption is disabled
+                GenerateSingleQRCode(originalData, false, "None");
+            }
 
             stopwatch.Stop();
             GenerationTime = stopwatch.Elapsed.TotalSeconds;
-            StatusMessage = $"Successfully generated secure QR code with {encryptionType} encryption!";
+            
+            int qrCount = QRCodeImages.Count;
+            string encryptionMode = IsEncryptionEnabled ? (UseAESEncryption ? "AES" : "RSA") : "None";
+            StatusMessage = $"Successfully generated {qrCount} QR code{(qrCount > 1 ? "s" : "")} with {encryptionMode} encryption!";
         }
         catch (Exception ex)
         {
@@ -122,6 +100,69 @@ public class MainViewModel : INotifyPropertyChanged
         OnPropertyChanged(nameof(StatusMessage));
         OnPropertyChanged(nameof(GenerationTime));
         OnPropertyChanged(nameof(DebugInfo));
+    }
+
+    void GenerateEncryptedQRCodes(string originalData)
+    {
+        string encryptionType = UseAESEncryption ? "AES" : "RSA";
+        
+        // Generate 3 different encrypted versions of the same data
+        for (int i = 1; i <= 3; i++)
+        {
+            try
+            {
+                // Create slightly different data for each QR code to make them unique
+                string dataVariation = $"{originalData} (Copy {i})";
+                string encryptedData = Encrypt(dataVariation);
+                
+                // Validate encryption worked
+                if (encryptedData.Contains("ERROR"))
+                {
+                    StatusMessage = $"Encryption failed for QR {i} - check debug info for details";
+                    OnPropertyChanged(nameof(StatusMessage));
+                    continue;
+                }
+
+                GenerateSingleQRCode(dataVariation, true, encryptionType, encryptedData, i);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error generating QR code {i}: {ex.Message}");
+                StatusMessage = $"Failed to generate QR code {i}: {ex.Message}";
+                OnPropertyChanged(nameof(StatusMessage));
+            }
+        }
+    }
+
+    void GenerateSingleQRCode(string originalData, bool isEncrypted, string encryptionType, string? encryptedData = null, int qrNumber = 1)
+    {
+        try
+        {
+            string contentForQR = encryptedData ?? originalData;
+            
+            // Use QRCoder instead of ZXing for better image generation
+            using var qrGenerator = new QRCoder.QRCodeGenerator();
+            var qrCodeData = qrGenerator.CreateQrCode(contentForQR, QRCoder.QRCodeGenerator.ECCLevel.Q);
+            using var qrCode = new QRCoder.PngByteQRCode(qrCodeData);
+            byte[] qrCodeBytes = qrCode.GetGraphic(20);
+
+            string title = isEncrypted ? $"QR Code {qrNumber} ({encryptionType})" : $"QR Code ({encryptionType})";
+
+            QRCodeImages.Add(new QRCodeData
+            {
+                Title = title,
+                OriginalData = originalData,
+                EncryptedData = contentForQR,
+                IsEncrypted = isEncrypted,
+                EncryptionType = encryptionType,
+                ImageSource = ImageSource.FromStream(() => new MemoryStream(qrCodeBytes))
+            });
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error creating QR code: {ex.Message}");
+            throw;
+        }
     }
 
     string Encrypt(string input)
