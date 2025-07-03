@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Secure QR")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+2e62c5152eb1cc9b7f5cdc94c1c96c4e22a42633")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+60d94018d2a66dd878755cda21cd91d21f7dfcc3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Secure QR")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Secure QR")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

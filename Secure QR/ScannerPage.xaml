@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Secure_QR.ScannerPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.Maui.Controls"
+             Title="QR Code Scanner"
+             BackgroundColor="Black">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />      <!-- Camera View -->
+            <RowDefinition Height="Auto" />   <!-- Controls -->
+            <RowDefinition Height="200" />    <!-- Results -->
+        </Grid.RowDefinitions>
+
+        <!-- Camera View with Static Overlay -->
+        <Grid Grid.Row="0">
+            <!-- Camera Feed -->
+            <zxing:CameraBarcodeReaderView 
+                x:Name="CameraView"
+                IsDetecting="{Binding IsScanning}"
+                BarcodesDetected="OnBarcodesDetected"
+                CameraLocation="Rear"
+                IsTorchOn="{Binding IsFlashOn}"
+                BackgroundColor="Black"
+                IsVisible="{Binding IsMobile}"/>
+            
+            <!-- Desktop placeholder -->
+            <Image Source="qrcode_placeholder.png"
+                   Aspect="AspectFill"
+                   IsVisible="{Binding IsDesktop}"
+                   BackgroundColor="Black"/>
+
+            <!-- Simple Overlay -->
+            <Grid>
+                <!-- Dimmed Background -->
+                <Rectangle Fill="Black" Opacity="0.5" />
+
+                <!-- Static Scanning Frame -->
+                <Frame WidthRequest="250" 
+                       HeightRequest="250"
+                       BackgroundColor="Transparent"
+                       BorderColor="White"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                    <Rectangle Fill="Transparent" 
+                               Stroke="Lime" 
+                               StrokeThickness="3"/>
+                </Frame>
+
+                <!-- Instruction Text -->
+                <Label Text="Align QR code within the frame"
+                       TextColor="White"
+                       FontSize="16"
+                       HorizontalOptions="Center"
+                       VerticalOptions="End"
+                       Margin="0,0,0,100"/>
+            </Grid>
+        </Grid>
+
+        <!-- Control Bar -->
+        <Frame Grid.Row="1"
+               BackgroundColor="#1E1E1E"
+               Padding="15"
+               CornerRadius="0">
+            <Grid ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Text="{Binding ScanStatusMessage}"
+                       TextColor="White"
+                       FontSize="14"
+                       VerticalOptions="Center"/>
+
+                <Button Grid.Column="1"
+                        Text="{Binding ScanButtonText}"
+                        Command="{Binding ToggleScanningCommand}"
+                        BackgroundColor="{Binding ScanButtonColor}"
+                        TextColor="White"
+                        WidthRequest="80"/>
+
+                <Button Grid.Column="2"
+                        Text="Test Scan"
+                        Command="{Binding TestScanCommand}"
+                        BackgroundColor="Purple"
+                        TextColor="White"
+                        WidthRequest="80"
+                        IsVisible="{Binding IsDesktop}"/>
+
+                <Button Grid.Column="3"
+                        Text="Flash"
+                        Command="{Binding ToggleFlashCommand}"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        WidthRequest="60"
+                        IsVisible="{Binding IsMobile}"/>
+
+                <Button Grid.Column="4"
+                        Text="Back"
+                        Command="{Binding BackCommand}"
+                        BackgroundColor="DarkRed"
+                        TextColor="White"
+                        WidthRequest="60"/>
+            </Grid>
+        </Frame>
+
+        <!-- Results Area -->
+        <ScrollView Grid.Row="2" BackgroundColor="#F0F0F0">
+            <StackLayout Padding="15" Spacing="10">
+                <!-- Scan Results -->
+                <Frame IsVisible="{Binding HasScannedData}"
+                       BackgroundColor="White"
+                       Padding="10"
+                       CornerRadius="8">
+                    <StackLayout Spacing="8">
+                        <Label Text="Scanned Data:"
+                               FontAttributes="Bold"
+                               TextColor="#333333"/>
+
+                        <Label Text="{Binding ScannedRawData}"
+                               FontSize="14"
+                               LineBreakMode="WordWrap"/>
+
+                        <Label Text="{Binding EncryptionDetected, StringFormat='Encryption: {0}'}"
+                               TextColor="{Binding EncryptionStatusColor}"
+                               FontAttributes="Bold"/>
+
+                        <Label Text="{Binding DecryptedData}"
+                               IsVisible="{Binding IsDataDecrypted}"
+                               FontSize="14"
+                               LineBreakMode="WordWrap"/>
+
+                        <Grid ColumnSpacing="10" Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0"
+                                    Text="Copy"
+                                    Command="{Binding CopyToClipboardCommand}"
+                                    BackgroundColor="#4CAF50"
+                                    TextColor="White"/>
+
+                            <Button Grid.Column="1"
+                                    Text="Decrypt"
+                                    Command="{Binding DecryptDataCommand}"
+                                    BackgroundColor="#2196F3"
+                                    TextColor="White"
+                                    IsVisible="{Binding CanDecrypt}"/>
+
+                            <Button Grid.Column="2"
+                                    Text="Clear"
+                                    Command="{Binding ClearResultsCommand}"
+                                    BackgroundColor="#F44336"
+                                    TextColor="White"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <!-- History -->
+                <Label Text="Recent Scans:"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding HasScanHistory}"/>
+
+                <CollectionView ItemsSource="{Binding ScanHistory}"
+                               IsVisible="{Binding HasScanHistory}"
+                               HeightRequest="120">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="White"
+                                   Padding="10"
+                                   CornerRadius="5">
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Label Text="{Binding Timestamp, StringFormat='{0:HH:mm}'}"
+                                           FontSize="12"
+                                           TextColor="Gray"/>
+                                    <Label Text="{Binding Data}"
+                                           FontSize="12"
+                                           LineBreakMode="TailTruncation"
+                                           HorizontalOptions="Fill"/>
+                                    <Label Text="{Binding EncryptionType}"
+                                           FontSize="12"
+                                           TextColor="Blue"/>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

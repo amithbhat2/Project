@@ -13,6 +13,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -24,8 +26,34 @@
                    HorizontalOptions="Center" 
                    TextColor="#2E4CEF" />
 
+            <!-- Navigation Buttons -->
+            <Grid Grid.Row="1" ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0"
+                        Text="📱 Scan QR Code"
+                        Command="{Binding OpenScannerCommand}"
+                        BackgroundColor="#673AB7"
+                        TextColor="White"
+                        FontSize="16"
+                        HeightRequest="50" 
+                        CornerRadius="10" />
+                        
+                <Button Grid.Column="1"
+                        Text="🔧 Generator Mode"
+                        IsEnabled="False"
+                        BackgroundColor="#9E9E9E"
+                        TextColor="White"
+                        FontSize="16"
+                        HeightRequest="50" 
+                        CornerRadius="10" />
+            </Grid>
+
             <!-- Input Section -->
-            <Frame Grid.Row="1" BackgroundColor="LightGray" Padding="15" CornerRadius="10">
+            <Frame Grid.Row="2" BackgroundColor="LightGray" Padding="15" CornerRadius="10">
                 <StackLayout Spacing="10">
                     <Label Text="Data Input:" FontSize="16" FontAttributes="Bold" />
                     
@@ -38,7 +66,7 @@
             </Frame>
 
             <!-- Encryption Options -->
-            <Frame Grid.Row="2" BackgroundColor="LightBlue" Padding="15" CornerRadius="10">
+            <Frame Grid.Row="3" BackgroundColor="LightBlue" Padding="15" CornerRadius="10">
                 <StackLayout Spacing="10">
                     <Label Text="Encryption Settings:" FontSize="16" FontAttributes="Bold" />
                     
@@ -59,11 +87,20 @@
                                      IsChecked="{Binding UseRSAEncryption}" 
                                      GroupName="EncryptionType" />
                     </StackLayout>
+                    
+                    <!-- Encryption Key Input (for decryption) -->
+                    <Entry x:Name="DecryptionKeyEntry"
+                           Placeholder="Enter decryption key (if needed)"
+                           Text="{Binding DecryptionKey}"
+                           IsPassword="True"
+                           FontSize="14"
+                           HeightRequest="40"
+                           IsVisible="{Binding IsEncryptionEnabled}" />
                 </StackLayout>
             </Frame>
 
             <!-- Generation Controls -->
-            <Grid Grid.Row="3" ColumnSpacing="10">
+            <Grid Grid.Row="4" ColumnSpacing="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="1*" />
@@ -84,21 +121,115 @@
                         HeightRequest="50" />
             </Grid>
 
+            <!-- Scanner Results Section -->
+            <Frame Grid.Row="5" 
+                   BackgroundColor="LightCyan" 
+                   Padding="15" 
+                   CornerRadius="10"
+                   IsVisible="{Binding HasScannedData}">
+                <StackLayout Spacing="10">
+                    <Label Text="Scanned QR Code Results:" FontSize="16" FontAttributes="Bold" />
+                    
+                    <Frame BackgroundColor="White" Padding="10" CornerRadius="5">
+                        <StackLayout Spacing="5">
+                            <Label Text="Raw Data:" FontSize="12" FontAttributes="Bold" TextColor="Gray" />
+                            <Label Text="{Binding ScannedRawData}" 
+                                   FontSize="14" 
+                                   LineBreakMode="WordWrap" 
+                                   MaxLines="3" />
+                        </StackLayout>
+                    </Frame>
+                    
+                    <Frame BackgroundColor="White" Padding="10" CornerRadius="5" IsVisible="{Binding IsScannedDataEncrypted}">
+                        <StackLayout Spacing="5">
+                            <Label Text="Decrypted Data:" FontSize="12" FontAttributes="Bold" TextColor="Green" />
+                            <Label Text="{Binding DecryptedData}" 
+                                   FontSize="14" 
+                                   LineBreakMode="WordWrap" 
+                                   MaxLines="5" 
+                                   TextColor="{Binding DecryptionStatusColor}" />
+                        </StackLayout>
+                    </Frame>
+                    
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <Label Text="{Binding EncryptionTypeDetected, StringFormat='Type: {0}'}" 
+                               FontSize="12" 
+                               TextColor="Blue" />
+                        <Label Text="{Binding DecryptionStatus}" 
+                               FontSize="12" 
+                               TextColor="{Binding DecryptionStatusColor}" />
+                    </StackLayout>
+                    
+                    <Button Text="🔄 Decrypt Again"
+                            Command="{Binding RetryDecryptionCommand}"
+                            BackgroundColor="#FF9800"
+                            TextColor="White"
+                            FontSize="14"
+                            HeightRequest="40"
+                            IsVisible="{Binding ShowRetryDecryption}" />
+                </StackLayout>
+            </Frame>
+
             <!-- Performance Stats -->
-            <Frame Grid.Row="4" BackgroundColor="LightYellow" Padding="10" CornerRadius="8">
+            <Frame Grid.Row="6" BackgroundColor="LightYellow" Padding="10" CornerRadius="8">
                 <StackLayout Orientation="Horizontal" Spacing="15">
-                    <Label Text="{Binding GenerationTime, StringFormat='Time: {0:F3}s'}" 
+                    <Label Text="{Binding GenerationTime, StringFormat='Gen Time: {0:F3}s'}" 
                            FontSize="12" />
+                    <Label Text="{Binding ScanTime, StringFormat='Scan Time: {0:F3}s'}" 
+                           FontSize="12"
+                           IsVisible="{Binding HasScannedData}" />
                     <Label Text="{Binding StatusMessage}" 
                            FontSize="12" 
                            TextColor="Green"
                            LineBreakMode="TailTruncation"
-                           HorizontalOptions="FillAndExpand" />
+                           HorizontalOptions="Fill" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Camera Preview Section (for scanner) -->
+            <Frame Grid.Row="7" 
+                   BackgroundColor="Black" 
+                   Padding="5" 
+                   CornerRadius="10"
+                   HeightRequest="300"
+                   IsVisible="{Binding IsScannerActive}">
+                <StackLayout>
+                    <Label Text="📷 Camera Scanner Active" 
+                           FontSize="16" 
+                           FontAttributes="Bold" 
+                           TextColor="White" 
+                           HorizontalOptions="Center" />
+                    
+                    <!-- Camera view placeholder - actual camera implementation would go here -->
+                    <Frame BackgroundColor="DarkGray" 
+                           HeightRequest="250" 
+                           HorizontalOptions="Fill" 
+                           VerticalOptions="Fill">
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Text="📹" FontSize="50" TextColor="White" HorizontalOptions="Center" />
+                            <Label Text="Point camera at QR code" 
+                                   FontSize="14" 
+                                   TextColor="White" 
+                                   HorizontalOptions="Center" />
+                            <Label Text="{Binding ScannerStatusMessage}" 
+                                   FontSize="12" 
+                                   TextColor="LightGray" 
+                                   HorizontalOptions="Center" />
+                        </StackLayout>
+                    </Frame>
+                    
+                    <Button Text="❌ Stop Scanner"
+                            Command="{Binding StopScannerCommand}"
+                            BackgroundColor="#F44336"
+                            TextColor="White"
+                            FontSize="14"
+                            HeightRequest="40"
+                            Margin="10,5" />
                 </StackLayout>
             </Frame>
 
             <!-- QR Code Display -->
-            <CollectionView Grid.Row="5" 
+            <CollectionView Grid.Row="8" 
                             ItemsSource="{Binding QRCodeImages}" 
                             HeightRequest="450">
                 <CollectionView.ItemsLayout>
@@ -114,74 +245,72 @@
                                     <RowDefinition Height="250" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-
+                                
+                                <!-- QR Code Title -->
                                 <Label Grid.Row="0" 
                                        Text="{Binding Title}" 
                                        FontSize="16" 
                                        FontAttributes="Bold" 
                                        HorizontalOptions="Center" />
-
+                                
+                                <!-- QR Code Image -->
                                 <Image Grid.Row="1" 
                                        Source="{Binding ImageSource}" 
                                        Aspect="AspectFit" 
-                                       BackgroundColor="White"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center" />
-
-                                <Label Grid.Row="2" 
-                                       Text="{Binding OriginalData, StringFormat='Original: {0}'}" 
-                                       FontSize="12" 
-                                       LineBreakMode="TailTruncation"
-                                       MaxLines="2" />
-
-                                <Label Grid.Row="3" 
-                                       Text="{Binding EncryptedData, StringFormat='Encrypted: {0}'}" 
-                                       FontSize="10" 
-                                       LineBreakMode="TailTruncation"
-                                       MaxLines="1"
-                                       TextColor="Gray"
-                                       IsVisible="{Binding IsEncrypted}" />
-
-                                <Grid Grid.Row="4" ColumnSpacing="10">
+                                       BackgroundColor="White" />
+                                
+                                <!-- QR Code Info -->
+                                <StackLayout Grid.Row="2" Spacing="5">
+                                    <Label Text="{Binding DataPreview, StringFormat='Data: {0}'}" 
+                                           FontSize="12" 
+                                           LineBreakMode="TailTruncation" 
+                                           MaxLines="2" />
+                                    <Label Text="{Binding EncryptionInfo}" 
+                                           FontSize="11" 
+                                           TextColor="Blue" />
+                                    <Label Text="{Binding CreatedTime, StringFormat='Created: {0:HH:mm:ss}'}" 
+                                           FontSize="10" 
+                                           TextColor="Gray" />
+                                </StackLayout>
+                                
+                                <!-- Action Buttons -->
+                                <Grid Grid.Row="3" ColumnSpacing="10">
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     
                                     <Button Grid.Column="0"
-                                            Text="Share" 
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ShareQRCommand}" 
-                                            CommandParameter="{Binding}" 
-                                            FontSize="14" 
-                                            BackgroundColor="#2196F3" />
-                                    
+                                            Text="💾 Save"
+                                            Command="{Binding SaveCommand}"
+                                            BackgroundColor="#2196F3"
+                                            TextColor="White"
+                                            FontSize="12"
+                                            HeightRequest="35" />
+                                            
                                     <Button Grid.Column="1"
-                                            Text="Decrypt" 
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DecryptQRCommand}" 
-                                            CommandParameter="{Binding}" 
-                                            FontSize="14" 
+                                            Text="📤 Share"
+                                            Command="{Binding ShareCommand}"
                                             BackgroundColor="#FF9800"
-                                            IsVisible="{Binding IsEncrypted}" />
+                                            TextColor="White"
+                                            FontSize="12"
+                                            HeightRequest="35" />
+                                            
+                                    <Button Grid.Column="2"
+                                            Text="🗑️ Delete"
+                                            Command="{Binding DeleteCommand}"
+                                            BackgroundColor="#F44336"
+                                            TextColor="White"
+                                            FontSize="12"
+                                            HeightRequest="35" />
                                 </Grid>
                             </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-            <!-- Debug/Info Section -->
-            <Frame Grid.Row="6" 
-                   BackgroundColor="LightGray" 
-                   Padding="10" 
-                   CornerRadius="5" 
-                   IsVisible="{Binding ShowDebugInfo}">
-                <StackLayout Spacing="5">
-                    <Label Text="Debug Information:" FontSize="12" FontAttributes="Bold" />
-                    <Label Text="{Binding DebugInfo}" FontSize="10" LineBreakMode="WordWrap" />
-                </StackLayout>
-            </Frame>
         </Grid>
     </ScrollView>
 </ContentPage>

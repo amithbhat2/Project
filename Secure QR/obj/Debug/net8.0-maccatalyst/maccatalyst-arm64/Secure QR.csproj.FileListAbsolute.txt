@@ -258,13 +258,14 @@
 /Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/libxamarin-dotnet-nativeaot.a
 /Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/libxamarin-dotnet.a
 /Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/libxamarin-dotnet.dylib
+/Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Microsoft.Maui.Controls.HotReload.Forms.dll
+/Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
+/Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Microsoft.VisualStudio.DesignTools.TapContract.dll
+/Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Microsoft.VisualStudio.DesignTools.XamlTapContract.dll
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/mauiimage.inputs
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/mauifont.inputs
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/mauisplash.inputs
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/mauisplash.stamp
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resizetizer/r/dotnet_bot@3x.png
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resizetizer/r/dotnet_bot@2x.png
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resizetizer/r/dotnet_bot.png
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resizetizer/r/Assets.xcassets/appicon.appiconset/appiconItunesArtwork.png
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resizetizer/r/Assets.xcassets/appicon.appiconset/appicon83.5x83.5@2x.png
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resizetizer/r/Assets.xcassets/appicon.appiconset/appicon76x76@2x.png
@@ -277,6 +278,7 @@
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resizetizer/r/Assets.xcassets/appicon.appiconset/appicon20x20@3x.png
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resizetizer/r/Assets.xcassets/appicon.appiconset/appicon20x20@2x.png
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resizetizer/r/Assets.xcassets/appicon.appiconset/Contents.json
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resizetizer/r/Resources/qrcode_placeholder.png
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/mauiimage.stamp
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resizetizer/f/MauiInfo.plist
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/mauifont.stamp
@@ -291,22 +293,6 @@
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/_ProcessedBundleResourcesPath.items
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/_ProcessedContentPath.items
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.csproj.AssemblyReference.cache
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.GeneratedMSBuildEditorConfig.editorconfig
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.AssemblyInfoInputs.cache
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.AssemblyInfo.cs
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.csproj.CoreCompileInputs.cache
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/XamlC.stamp
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.csproj.Up2Date
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.dll
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/refint/Secure QR.dll
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.pdb
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.genruntimeconfig.cache
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/ref/Secure QR.dll
-/Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Microsoft.Maui.Controls.HotReload.Forms.dll
-/Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
-/Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Microsoft.VisualStudio.DesignTools.TapContract.dll
-/Users/amithbhat/Documents/Project/Secure QR/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Microsoft.VisualStudio.DesignTools.XamlTapContract.dll
-/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.sourcelink.json
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/Microsoft.CSharp.stamp
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/Microsoft.Extensions.Configuration.Abstractions.stamp
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/Microsoft.Extensions.Configuration.stamp
@@ -494,3 +480,15 @@
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/zxing.stamp
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/ZXing.Net.MAUI.Controls.stamp
 /Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/ZXing.Net.MAUI.stamp
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.GeneratedMSBuildEditorConfig.editorconfig
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.AssemblyInfoInputs.cache
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.AssemblyInfo.cs
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.csproj.CoreCompileInputs.cache
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.sourcelink.json
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/XamlC.stamp
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.csproj.Up2Date
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.dll
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/refint/Secure QR.dll
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.pdb
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Secure QR.genruntimeconfig.cache
+/Users/amithbhat/Documents/Project/Secure QR/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/ref/Secure QR.dll

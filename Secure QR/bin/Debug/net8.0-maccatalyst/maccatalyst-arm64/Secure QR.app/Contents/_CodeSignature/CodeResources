@@ -12,10 +12,6 @@
 		<data>
 		aofkexaKCtwFu63SXnoqU+91aTg=
 		</data>
-		<key>Resources/MauiInfo.plist</key>
-		<data>
-		iEtuUGCV6JM3gxS/pO33swhmpp8=
-		</data>
 		<key>Resources/MonoTouchDebugConfiguration.txt</key>
 		<data>
 		oowkf1sL6T19nanXUObgmuayWqM=
@@ -32,30 +28,13 @@
 		<data>
 		TiDfCD/FqKbF5HwqVeI/UoXBWR0=
 		</data>
-		<key>Resources/dotnet_bot.png</key>
+		<key>Resources/qrcode_placeholder.png</key>
 		<data>
-		egvqYQJu98U5bepNqiiYGWJc9As=
-		</data>
-		<key>Resources/dotnet_bot@2x.png</key>
-		<data>
-		5Olnli4Cc1nAHZR7Qad9WEquVR0=
-		</data>
-		<key>Resources/dotnet_bot@3x.png</key>
-		<data>
-		Zt+VE+uuJQUze/d9zd3r+NdrtDw=
+		KFsYhnUOkzIPyVganGYgHx5QCs8=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Frameworks/libSkiaSharp.framework</key>
-		<dict>
-			<key>cdhash</key>
-			<data>
-			zO6MvRYwCdS4DUeupekwMz5G28k=
-			</data>
-			<key>requirement</key>
-			<string>cdhash H"ccee8cbd163009d4b80d47aea5e930333e46dbc9"</string>
-		</dict>
 		<key>MonoBundle/Microsoft.CSharp.dll</key>
 		<dict>
 			<key>hash2</key>
@@ -81,42 +60,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Z/pDJQANsBfcDDWCm0FvAk8ELSTvuGi88XqJXuZQCpM=
+			oBBqY4+srmIfhw7acgy2yYDB1dScL0NRE04/4EO5KRs=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.DependencyInjection.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FYdhzneOeZlJ86MGDEYbEFW7NfH1pl7/DkI5eEnwns0=
+			jW57ZMzlVPCg+9srqAdFiV+gtObMN4uf7f6M6G8NiuQ=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Logging.Abstractions.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RcIlJCGFQXF+SgreNoR8HNpJIfWUW0l1oceN3+Aj0LE=
+			Kea/r1zgea1NcNxUfZZgOJkqdCjfbnJghOuQEOyDdxU=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Logging.Debug.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ox3BraW/6xn+S6UiXbnJlQ3KJQ+y2qrCWbU3xdCJSmU=
+			eYsHFOPf6OgNEuL67oJXu10F5EMsl1zFEMuDsz/2AEg=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Logging.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ss+6LgXuiakem8nPESRopfT6BdGnfqgcEx6mVvPRM8I=
+			QzCl7+nREK+3+OVn1bQ+7pduD39oAtE6IRtl10dSkXk=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Options.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XgGJTLwGYbrLjKj0haQNXuTgLyj+9YAHZooCdkMbRpM=
+			X5sOWJ8c6cplZYjNkswL1TgD/frSWPspFqqhSu3OaCw=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Extensions.Primitives.dll</key>
@@ -144,7 +123,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			m6GoUrUHSi7983I7Ah3luddsFQxRrYJJW3HRzBCU87U=
+			zij36uo1/SPHLnsz8TKfvcsQEbhGC3fAj62VLN0Fg+U=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Maui.Controls.HotReload.Forms.dll</key>
@@ -158,35 +137,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			q4i/Gw/xz0cAskMRj5qiEYsi5vm1Dl5eJ1kAGK7GsKI=
+			rKdScuJGo6l+SUGMdRdufU5oG0bcPKbqCld4cbf3SLE=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Maui.Controls.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qkWgXLHY/dgmN13CU7RLgvq6geVVgTDQ6FFF1SS6lzw=
+			P77mzJsKhmk+oSdFec475YJEtLJcNhhifBGmXqLeu/M=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Maui.Essentials.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			O1+6lvVbyf0ttSX571pZwvdI7pZ8lXmxP26E1O80LKM=
+			JE6rIn93c/1E/OqGnFZ/dPrQDQMffPLcCHtT2Jz7+U0=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Maui.Graphics.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			swtqusR2UtWyFh3QYzWgyt4KbHYw03+i+GO1hBp5kcM=
+			1xkpk6dDr0wIv9aL7nVYe9V2bNJRpLyCSqc29quaEY4=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Maui.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rUnijlnzLl7iETkTXLZNVNJ26KGBKJXh9lZGMB+txSY=
+			kghOY6RxOk4DZE/4ddXPnzgi/l+dEdWCBxd+L07I86Q=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.VisualBasic.Core.dll</key>
@@ -249,42 +228,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+EbTQ7tTui2Od1RkI8iLjpNIWYOJuzPvXGRcJSY3YbY=
+			fSpwBvvXeTiyklrZvU1H5bSFls+VTFdCXLCH50+vZ6g=
 			</data>
 		</dict>
 		<key>MonoBundle/Secure QR.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			S4WQ94GW5wLcyOJvYsQ29OZf+6ir7p/F/7MhsCC5c24=
-			</data>
-		</dict>
-		<key>MonoBundle/SkiaSharp.Views.Maui.Controls.dll</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			9WS5MGLaPvzR27JK3xS408jMfKIBpY+ZCDotZl+QUok=
-			</data>
-		</dict>
-		<key>MonoBundle/SkiaSharp.Views.Maui.Core.dll</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			pboLkELbX8hqI72mi65PGJrE/NRRkFDpJ0FydcZpcW0=
-			</data>
-		</dict>
-		<key>MonoBundle/SkiaSharp.Views.iOS.dll</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			AXPPNSTHl6GFmN1lHxOK5JWa5elW3PqU2H59WFtShE0=
-			</data>
-		</dict>
-		<key>MonoBundle/SkiaSharp.dll</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			+nmP4BYLjnjj117DGcmMJIALcq0OM0kprZkRkA+dejQ=
+			ZuxktQV2VGsW0ply772l1hemsiJ/d8QbtGTwLHGupV8=
 			</data>
 		</dict>
 		<key>MonoBundle/System.AppContext.dll</key>
@@ -1439,98 +1390,98 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xolYoL7NVepSZjigmbId2XeK41EbLidSicHAqnMshSo=
+			uWATohDdtwTUNuu8VTUirfX8BFoDuYGXR8qBlZd1ELY=
 			</data>
 		</dict>
 		<key>MonoBundle/ar/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FQousFFQrjAChLLHQDtL0ajn8tknqwd+hNwScy5hje4=
+			2Bm4bBNgUbd1HKAeVW95VHndYRDaiDtPMzzVzerNo+E=
 			</data>
 		</dict>
 		<key>MonoBundle/ca/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			I2SiRSUlaCO5tFyPjcr8D0yeqp+RmLN2+Cy794ZxRP4=
+			kg4zdl4Z41+F0yWIIugxnlHh984ED9PANJX0O3qM/FM=
 			</data>
 		</dict>
 		<key>MonoBundle/cs/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HwsNHGShULE2ZhtrvMW3+7ZWBPIDIgfh+Vpzq8aip0M=
+			96XrDCXzcz/X1sk7n3Dx7BFSmYAiaF1VPqr4G0m0ll0=
 			</data>
 		</dict>
 		<key>MonoBundle/da/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7pRWN1Yfdnq9p1B7w1/GfuSOWQrVCYkGgb8TktcYQR0=
+			JForDHDyAN0OkBShTB0iCItZom1uSNLWYmhy/hIKd5I=
 			</data>
 		</dict>
 		<key>MonoBundle/de/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wWp1mtNxnwQvpz3DiWp2AbTbMQXC+RXPUEWMMSgpyjo=
+			ul6cuv+QtCzlPdYAn+Y1CuvqS1z+RSys3OByqri9Qys=
 			</data>
 		</dict>
 		<key>MonoBundle/el/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			UrXBNWYPd21P6Ri1kCz4L+Rglp8YmAHGEikYSVE83OY=
+			Pni3fyzpDLjc/hIDKx3a5dgMvtdHiCfQeEp+7G8Fyd0=
 			</data>
 		</dict>
 		<key>MonoBundle/es/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LJqk+DJRkbPjuVckkqp7RU9WAZF6ImN9qS7mkI5MhQw=
+			aVXQ1jR3dbAkIijgNcldbkUtbgvr2VSScAAZXDGiMEQ=
 			</data>
 		</dict>
 		<key>MonoBundle/fi/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			dUZo4mk3GXyjbd1C5aWQUnmt2Bls6Zo4JfUBg/8AGfY=
+			Y6MwzT2+4wq8l4Ne5qa4M8293qFofVtvQ7FNOVM/h00=
 			</data>
 		</dict>
 		<key>MonoBundle/fr/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RcnZMoyCI/kzz29eXvWo2sKgg2fOCaMagVG9XLsMCwo=
+			cNJCLYznhR0a+XRF5oq2oxcj+qhOej1Sq2IudyERZ3E=
 			</data>
 		</dict>
 		<key>MonoBundle/he/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			sgWbvMNAJI962uQTm79yHA2ybPIGPDxGX0qr+EyZLvk=
+			mGrmPWdv+/H9/abCQNmLIbAz8asAQ48smjEQ8mFQr78=
 			</data>
 		</dict>
 		<key>MonoBundle/hi/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			BQPrF8qGCPnS0ZLuPK/Gw7fJrbSaSx5/aZlKlxbfGZM=
+			mIunqAjh3wD2cy97TOK1Vd+mE3MH+VRA28MF35iP6OA=
 			</data>
 		</dict>
 		<key>MonoBundle/hr/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/Ysp0BWV36eqvpXPIB1HohtB+F7GzHpvp2YvsEO2rCU=
+			kgkiWbSE1yOLGxVB8Z0Rj5JqVwHL/o+7wcyso4v0sSo=
 			</data>
 		</dict>
 		<key>MonoBundle/hu/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			iGtah8GeGoWxf8rBEl6L8LrQx9udayBGrXvz7UGYsjc=
+			ILF46gK5GOheOouXGj0+lgi2HJF8HrlMkReh/6F9YvU=
 			</data>
 		</dict>
 		<key>MonoBundle/icudt.dat</key>
@@ -1544,35 +1495,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Fb8tgyl3CZ0Enec4SJ6DiYZIrYjZiEJ2Vmkc8RprdC4=
+			m5CTKaSxfPxtiZ52Jr/5BoEjR/DLOpxSw6R8fBQyrQQ=
 			</data>
 		</dict>
 		<key>MonoBundle/it/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			BQYSoAww4/el9diQZlWCHt4+N+/da7llgx161oMixc0=
+			7T/FjvVrPFggkNMI0nVPua5w6pPx58j9zartCy4cM7c=
 			</data>
 		</dict>
 		<key>MonoBundle/ja/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jtYATGVcjQJXkcjyT9HWQnL19Km14VbQ1AC6y6pxHSQ=
+			evf0yCssh0HAsCHZhwZowoPmZwpb63FMV2/VBqEJ1ec=
 			</data>
 		</dict>
 		<key>MonoBundle/ko/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mB+rfjUPmBvG4t0cXauTh5ZjZQC3ENXzkZ9SGH2KtCQ=
+			ApJLSxFLwSNuOaJ4L7BXcHl/00u+G8r4U2OAMf7DdM0=
 			</data>
 		</dict>
 		<key>MonoBundle/ms/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			o4ri2SwFj0GerVPq9M/9nRLLGqWU3uhsHh1//Fzl6ZI=
+			Akbh2TrLgdbRLShpUf00Jm75Mjhdo/9x+a2PjOdGW6o=
 			</data>
 		</dict>
 		<key>MonoBundle/mscorlib.dll</key>
@@ -1586,7 +1537,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rvuW9P4z/fwL3TAoabT+uVhH87wS+YZmQCiBUYdnkH8=
+			QyPEOwMq1svdoWgvsS8vFyoLAW6SAQFxkAeZmXkoXyo=
 			</data>
 		</dict>
 		<key>MonoBundle/netstandard.dll</key>
@@ -1600,42 +1551,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FMZtsSJTKS0IYejk3oISYK56bJ3PNnAWm9aV49NmF9Y=
+			rIeibjZYvQn51DSiF4dm6/xIRRqM6gI4viOBt+oWXHc=
 			</data>
 		</dict>
 		<key>MonoBundle/pl/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4aIztAK/mNeKDmspY1SRTQqVoAUP8hMKaleog4DPdlk=
+			00cjeiQQSLXlyQ/0myUT8fM/LDzGJNHMDpfaRCX7BVY=
 			</data>
 		</dict>
 		<key>MonoBundle/pt-BR/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bXDy0GOJzeVA4f81Jm97Ao+7hgULLvVqbY1pf5t5OVE=
+			tkzpMLDgZSphX7H+H6vXs+HNOd15RD1XQrRuHQgRekY=
 			</data>
 		</dict>
 		<key>MonoBundle/pt/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RiCKqlJaZ52sA9hrntyQ4IazMtEbVlGjWk2e1bGD6sY=
+			wT2aEgJ2pZuY0O450TJg3tAONMnRPGE3qSnOdKCrlAk=
 			</data>
 		</dict>
 		<key>MonoBundle/ro/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			OQrpdlDoN5hHPzSrTvxDeO8iFKc8tEOQuUOJ22oJ5II=
+			ZQm0LFMVRSJyGbByAD96xr6p4PvkWb2zEzdx4HaJQOE=
 			</data>
 		</dict>
 		<key>MonoBundle/ru/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XVS+pNss9qsVH3WBxSnI4VNqQ9uBJ2b5yhuKkyfWFVU=
+			J1kHNv2k/bGzo8qA2ipjeyEV+T0VP98ei+MVzZWlT6s=
 			</data>
 		</dict>
 		<key>MonoBundle/runtimeconfig.bin</key>
@@ -1649,63 +1600,63 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			O3qFY4yOxUr++yd+z9LoRxYskkRSpdBn3YZ7UScxjl4=
+			oKx2ZfGIwTKdeuZ/VwkR0C0X9dP6FZlBzaiDMtGuxjc=
 			</data>
 		</dict>
 		<key>MonoBundle/sv/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			sed+3ADQs4EnimiHteYyDbO6v7lzNFq+po/+Jym0bg8=
+			Pl7N3USNo77F0C+783oMR2LgSvSDr8TVw/A1H7aRdHo=
 			</data>
 		</dict>
 		<key>MonoBundle/th/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SbT3zRP2B4jHOXNM72Ao9Cg+j9g8HPdwYgX65QHf5H4=
+			PRVdVXD2STez+dbM6vhzwHIt1vYx8NifYIxFzFyzf1s=
 			</data>
 		</dict>
 		<key>MonoBundle/tr/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			U26lRbxRsqrWpn92i3zSYvs30ifG4eUMAjJZvg7gUN8=
+			J4s7k/5pxU1MRE1Bhq4qThNV4zetko+I6PtjsGDp+Ew=
 			</data>
 		</dict>
 		<key>MonoBundle/uk/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xFKBaOwE23a7JttzFcOrxyItIpKtAIle9SeeYdnT+es=
+			tuCWSkIdtsh2qxXzJTMl889pSnl67y58ZmWZ52228Qs=
 			</data>
 		</dict>
 		<key>MonoBundle/vi/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Jy1OrUdqbG3uAF1m1SVloS/5t7uSP+D0h6yqpfrU9Aw=
+			xtxHLY5eEdb20zzP4Fc+HUpfmo3wWbDl8w/M4Gh21/Y=
 			</data>
 		</dict>
 		<key>MonoBundle/zh-HK/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Lo2Qeh1cxPRtQrUqzJiJ7q/bNU1faN15hi73mGrNEV4=
+			+3CUxRjbz6pN8lYdxbgf0DEbLdwAD9en92h0Wg217zI=
 			</data>
 		</dict>
 		<key>MonoBundle/zh-Hans/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JeAmR++zlWFKTdRbXGTzDD6D3KUNSoXyBPc4tiYQUM4=
+			pdnMwtWSpf9l0FGgnpwLkI1cbGfd0eg9RZ9G/9/mzdc=
 			</data>
 		</dict>
 		<key>MonoBundle/zh-Hant/Microsoft.Maui.Controls.resources.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JroYWayfy1SfXv0YaDjN91ijndzQnIWjps37m9TQI+A=
+			G8jIbOrm5r3y4vJ5fAQxl1I4XurWyQ6A7G95qeLv0cI=
 			</data>
 		</dict>
 		<key>MonoBundle/zxing.dll</key>
@@ -1727,13 +1678,6 @@
 			<key>hash2</key>
 			<data>
 			4cXOo2WibFZrnszqB0331krXq4KdbPOWNZKDIQyblRc=
-			</data>
-		</dict>
-		<key>Resources/MauiInfo.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			tx0KXqEC+DvcCGyogQTEQWHcCWJYYqH24NtPwhpQEjo=
 			</data>
 		</dict>
 		<key>Resources/MonoTouchDebugConfiguration.txt</key>
@@ -1764,25 +1708,11 @@
 			ceTdRetgPz9csHSCHVCjhg8AeaJOCvt7zkFGJ7suw/s=
 			</data>
 		</dict>
-		<key>Resources/dotnet_bot.png</key>
+		<key>Resources/qrcode_placeholder.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FRD2xBX1wchOeHEX2Af77q7m8O7ECwhQ0qzPcfEGsTM=
-			</data>
-		</dict>
-		<key>Resources/dotnet_bot@2x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			A9+c5HONTmrGGxPzPiicd+2iwsPQSTUCIhuPtWauMa8=
-			</data>
-		</dict>
-		<key>Resources/dotnet_bot@3x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Up4t4C3+oRoTqJRc+zJSfhbhdg8R3zWbHkE+G9N4B9U=
+			NtojAfdMrxxV5BX5VgMfdp/aPro/ohrLp8e0yewInGw=
 			</data>
 		</dict>
 	</dict>
